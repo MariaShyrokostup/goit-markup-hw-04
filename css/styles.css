@@ -134,9 +134,7 @@ img {
 .current {
   position: relative;
 }
-.blue {
-  color: var(--focus-color);
-}
+
 .current::after {
   content: "";
   position: absolute;
@@ -159,7 +157,9 @@ img {
 .header-list-link:focus {
   color: var(--focus-color);
 }
-
+.blue {
+  color: var(--focus-color);
+}
 .header-address {
   font-style: normal;
 }
@@ -185,6 +185,7 @@ img {
     ),
     url(../images/hero-picture.jpg);
   background-repeat: no-repeat;
+  background-position: center;
   margin: 0 auto;
   max-width: 1440px;
   background-size: cover;
