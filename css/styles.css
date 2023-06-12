@@ -83,6 +83,8 @@ img {
 .header {
   border-bottom: 1px solid var(--border-color);
   background-color: var(--main-white);
+  box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
 }
 
 .header-container {
@@ -132,7 +134,9 @@ img {
 .current {
   position: relative;
 }
-
+.blue {
+  color: var(--focus-color);
+}
 .current::after {
   content: "";
   position: absolute;
@@ -141,14 +145,14 @@ img {
   width: 100%;
   height: 4px;
   left: 0;
-  bottom: -4px;
+  bottom: -1px;
 }
 .header-list-link {
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: #2e2f42;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--transition);
 }
 
 .header-list-link:hover,
@@ -176,14 +180,14 @@ img {
   padding: 188px 0;
   background: var(--title-color);
   background-image: linear-gradient(
-      180deg,
-      rgba(46, 47, 66, 0.7) 100%,
-      rgba(46, 47, 66, 0.7) 100%
+      rgba(46, 47, 66, 0.7),
+      rgba(46, 47, 66, 0.7)
     ),
     url(../images/hero-picture.jpg);
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: 1440px;
+  margin: 0 auto;
+  max-width: 1440px;
+  background-size: cover;
 }
 
 .main-header {
@@ -217,6 +221,7 @@ img {
   letter-spacing: 0.04em;
   margin: 0 auto;
   display: block;
+  transition: background-color var(--transition);
 }
 
 .main-button:hover,
@@ -304,7 +309,7 @@ img {
 }
 
 .team-card {
-  padding: 32px 16px;
+  padding: 32px 0;
 }
 
 .team-subheader {
@@ -325,6 +330,7 @@ img {
 }
 .team-soc-list {
   display: flex;
+  justify-content: center;
   gap: 24px;
 }
 .team-soc-item {
@@ -372,12 +378,13 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: fill var(--transition);
+  transition: border-color var(--transition), color var(--transition);
 }
 .customers-icon {
   fill: currentColor;
 }
-.customers-link:hover {
+.customers-link:hover,
+.customers-link:focus {
   color: var(--focus-color);
   border-color: var(--focus-color);
 }
@@ -387,6 +394,7 @@ img {
 }
 .footer-container {
   display: flex;
+  align-items: baseline;
 }
 .footer-logo-section {
   margin-right: 120px;
@@ -471,7 +479,8 @@ img {
   padding: 12px 24px;
   border-radius: 4px;
   border: 1px solid var(--border-color);
-  transition: color var(--transition);
+  transition: color var(--transition), background-color var(--transition),
+    border-color var(--transition), box-shadow var(--transition);
 }
 
 .portfolio-filter-button:hover,
@@ -490,7 +499,8 @@ img {
   column-gap: 24px;
 }
 .portfolio-item-link {
-  transition: var(--transition);
+  transition: box-shadow var(--transition);
+  display: block;
 }
 
 .portfolio-item {
@@ -498,34 +508,36 @@ img {
   background: var(--main-white);
 }
 
-.portfolio-item:hover,
-.portfolio-item:focus {
+.portfolio-item-link:hover,
+.portfolio-item-link:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
-}
-
-.portfolio-item-link:hover .cover,
-.portfolio-item-link:focus .cover {
-  transform: translateY(0%);
 }
 
 .portfolio-item-cover {
   position: relative;
   overflow: hidden;
 }
-.cover {
-  position: absolute;
-  transform: translateY(-100%);
-  left: 0px;
-  top: 0px;
-  padding: 40px 32px 164px 32px;
-  background: var(--logo-color);
-}
+
 .portfolio-cover-text {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--light-blue-background);
+  top: 0px;
+  position: absolute;
+  padding: 40px 32px;
+  background-color: var(--logo-color);
+  transform: translateY(100%);
+  transition: transform var(--transition);
+  width: 100%;
+  height: 100%;
 }
+
+.portfolio-item-link:hover .portfolio-cover-text,
+.portfolio-item-link:focus .portfolio-cover-text {
+  transform: translateY(0%);
+}
+
 .app-name {
   padding: 32px 16px;
   border: 1px solid var(--border-color);
@@ -570,15 +582,29 @@ img {
   border-radius: 4px;
 }
 .modal-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
   background-color: var(--border-color);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   position: absolute;
-  right: 24px;
-  top: 24px;
   cursor: pointer;
+  padding: 0;
+  top: 24px;
+  right: 24px;
+  transition: background-color var(--transition), border var(--transition);
+}
+.modal-cross {
+  transition: fill var(--transition);
+}
+.modal-button:focus,
+.modal-button:hover {
+  background-color: var(--focus-color);
+  border: none;
+  fill: var(--main-white);
 }
 .is-hidden {
   visibility: hidden;
